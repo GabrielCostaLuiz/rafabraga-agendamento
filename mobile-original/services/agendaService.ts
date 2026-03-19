@@ -1,6 +1,8 @@
 export interface Show {
   id: string | number;
   date: string;
+  month?: string;
+  weekday?: string;
   event: string;
   city: string;
   time: string;

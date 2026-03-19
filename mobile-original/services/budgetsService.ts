@@ -38,5 +38,17 @@ export const budgetsService = {
       console.error("Error updating lead status:", error);
       return { success: false, error };
     }
+  },
+
+  async deleteLead(id: string) {
+    try {
+      const resp = await fetch(`${API_URL}?id=${id}`, {
+        method: "DELETE",
+      });
+      return await resp.json();
+    } catch (error) {
+      console.error("Error deleting lead:", error);
+      return { success: false, error };
+    }
   }
 };

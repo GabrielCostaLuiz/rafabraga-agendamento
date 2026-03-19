@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Modal, ActivityIndicator, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Phone, MessageCircle, Eye, X, Mail, MapPin, Music, Layout, Calendar, AlertCircle, RotateCw } from 'lucide-react-native';
+import { Phone, MessageCircle, Eye, X, Mail, MapPin, Music, Layout, Calendar, AlertCircle, RotateCw, Trash2 } from 'lucide-react-native';
 import { budgetsService, Lead } from '../../services/budgetsService';
 
 export default function BudgetsScreen() {
@@ -9,6 +9,7 @@ export default function BudgetsScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [processingId, setProcessingId] = useState<string | number | null>(null);
 
   const fetchLeads = async () => {
     setIsLoading(true);
@@ -27,13 +28,58 @@ export default function BudgetsScreen() {
     fetchLeads();
   }, []);
 
-  const handleWhatsApp = (phone: string, name?: string) => {
-    const message = encodeURIComponent(`Olá ${name ? name : 'tudo bem'}? Aqui é o Rafa Braga! Vi que você fez um orçamento e estou entrando em contato para acertarmos mais detalhes.`);
-    Linking.openURL(`whatsapp://send?phone=55${phone.replace(/\D/g, '')}&text=${message}`);
+  const updateLeadStatus = async (id: string | number) => {
+    setProcessingId(id);
+    try {
+      await budgetsService.markAsRead(id.toString());
+      setLeads(prev => prev.map(lead => lead.id === id ? { ...lead, status: 'Visto' } : lead));
+    } catch(err) {
+      console.error(err);
+    } finally {
+      setProcessingId(null);
+    }
   }
 
-  const openVisualizer = (lead: Lead) => {
-    setSelectedLead(lead);
+  const handleWhatsApp = async (lead: Lead) => {
+    if (lead.status === 'Novo' || lead.status === 'pending') {
+      await updateLeadStatus(lead.id);
+    }
+    const message = encodeURIComponent(`Olá ${lead.name ? lead.name : 'tudo bem'}? Aqui é o Rafa Braga! Vi que você fez um orçamento e estou entrando em contato para acertarmos mais detalhes.`);
+    Linking.openURL(`whatsapp://send?phone=55${lead.phone.replace(/\D/g, '')}&text=${message}`);
+  }
+
+  const handleDelete = (lead: Lead) => {
+    Alert.alert(
+      "Excluir Orçamento",
+      `Deseja realmente excluir o orçamento de ${lead.name}?`,
+      [
+        { text: "Cancelar", style: "cancel" },
+        { 
+          text: "Excluir", 
+          style: "destructive",
+          onPress: async () => {
+            setProcessingId(lead.id);
+            try {
+              await budgetsService.deleteLead(lead.id.toString());
+              setLeads(prev => prev.filter(l => l.id !== lead.id));
+              setModalVisible(false);
+            } catch(err) {
+              console.error(err);
+              Alert.alert('Erro', 'Não foi possível excluir o orçamento.');
+            } finally {
+              setProcessingId(null);
+            }
+          }
+        }
+      ]
+    );
+  }
+
+  const openVisualizer = async (lead: Lead) => {
+    if (lead.status === 'Novo' || lead.status === 'pending') {
+      await updateLeadStatus(lead.id);
+    }
+    setSelectedLead({ ...lead, status: 'Visto' });
     setModalVisible(true);
   }
 
@@ -77,18 +123,18 @@ export default function BudgetsScreen() {
                     <Text style={styles.customerName} numberOfLines={1}>{item.name}</Text>
                     <Text style={styles.cityText} numberOfLines={1}>{item.location}</Text>
                   </View>
-                  <View style={[styles.statusBadge, { backgroundColor: item.status === 'Novo' ? '#EF4444' : 'rgba(255,255,255,0.1)' }]}>
-                    <Text style={styles.statusText}>{item.status || 'Novo'}</Text>
+                  <View style={[styles.statusBadge, { backgroundColor: (item.status === 'Novo' || item.status === 'pending') ? '#EF4444' : 'rgba(255,255,255,0.1)' }]}>
+                    <Text style={styles.statusText}>{(item.status === 'Novo' || item.status === 'pending') ? 'NOVO' : 'VISTO'}</Text>
                   </View>
                 </View>
                 <Text style={styles.dateText}>{item.date || 'Recente'}</Text>
                 <View style={styles.actions}>
-                  <TouchableOpacity style={styles.actionButton} onPress={() => openVisualizer(item)}>
-                    <Eye size={18} color="#FFF" />
+                  <TouchableOpacity style={styles.actionButton} onPress={() => openVisualizer(item)} disabled={processingId === item.id}>
+                    {processingId === item.id ? <ActivityIndicator size="small" color="#FFF" /> : <Eye size={18} color="#FFF" />}
                     <Text style={styles.actionLabel}>Visualizar</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={[styles.actionButton, { backgroundColor: '#25D366' }]} onPress={() => handleWhatsApp(item.phone, item.name)}>
-                    <MessageCircle size={18} color="#FFF" />
+                  <TouchableOpacity style={[styles.actionButton, { backgroundColor: '#25D366' }]} onPress={() => handleWhatsApp(item)} disabled={processingId === item.id}>
+                    {processingId === item.id ? <ActivityIndicator size="small" color="#FFF" /> : <MessageCircle size={18} color="#FFF" />}
                   </TouchableOpacity>
                 </View>
               </View>
@@ -116,10 +162,6 @@ export default function BudgetsScreen() {
                 {/* Grid de Contato */}
                 <View style={styles.contactGrid}>
                    <View style={styles.contactItem}>
-                      <Mail size={14} color="#EF4444" />
-                      <Text style={styles.contactText}>{selectedLead.email || 'Não informado'}</Text>
-                   </View>
-                   <View style={styles.contactItem}>
                       <Phone size={14} color="#EF4444" />
                       <Text style={styles.contactText}>{selectedLead.phone}</Text>
                    </View>
@@ -140,7 +182,12 @@ export default function BudgetsScreen() {
                       <AlertCircle size={16} color="#EF4444" />
                       <Text style={styles.sectionTitle}>Limitações Acústicas</Text>
                    </View>
-                   <Text style={styles.bodyText}>{selectedLead.acoustics || 'Não informado'}</Text>
+                   <Text style={styles.bodyText}>
+                     {selectedLead.acoustics === 'livre' ? 'Livre - Som aberto e forte' : 
+                      selectedLead.acoustics === 'controlado' ? 'Controlado - Ambiente familiar' :
+                      selectedLead.acoustics === 'baixo' ? 'Restrito (Sem percussão pesada)' :
+                      (selectedLead.acoustics || 'Não informado')}
+                   </Text>
                 </View>
 
                 {Array.isArray(selectedLead.infra) && selectedLead.infra.length > 0 && (
@@ -165,13 +212,24 @@ export default function BudgetsScreen() {
                    </View>
                 </View>
 
-                <TouchableOpacity 
-                   style={styles.wppButton}
-                   onPress={() => handleWhatsApp(selectedLead.phone, selectedLead.name)}
-                >
-                   <MessageCircle size={20} color="#FFF" />
-                   <Text style={styles.wppButtonText}>Entrar em contato</Text>
-                </TouchableOpacity>
+                <View style={{flexDirection: 'row', gap: 12, marginTop: 10}}>
+                  <TouchableOpacity 
+                     style={[styles.wppButton, {flex: 1}]}
+                     onPress={() => handleWhatsApp(selectedLead)}
+                     disabled={processingId === selectedLead.id}
+                  >
+                     {processingId === selectedLead.id ? <ActivityIndicator size="small" color="#FFF" /> : <MessageCircle size={20} color="#FFF" />}
+                     <Text style={styles.wppButtonText}>Entrar em contato</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity 
+                     style={styles.deleteButton}
+                     onPress={() => handleDelete(selectedLead)}
+                     disabled={processingId === selectedLead.id}
+                  >
+                     {processingId === selectedLead.id ? <ActivityIndicator size="small" color="#EF4444" /> : <Trash2 size={24} color="#EF4444" />}
+                  </TouchableOpacity>
+                </View>
                 <View style={{height:40}} />
               </ScrollView>
             )}
@@ -222,6 +280,7 @@ const styles = StyleSheet.create({
   bodyText: { color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 20 },
   notesBox: { backgroundColor: 'rgba(255,255,255,0.03)', padding: 16, borderRadius: 16, borderLeftWidth: 3, borderLeftColor: '#EF4444' },
   notesText: { color: 'rgba(255,255,255,0.8)', fontSize: 14, lineHeight: 22 },
-  wppButton: { height: 60, backgroundColor: '#25D366', borderRadius: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 10 },
-  wppButtonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' }
+  wppButton: { height: 60, backgroundColor: '#25D366', borderRadius: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  wppButtonText: { color: '#FFF', fontSize: 16, fontWeight: 'bold' },
+  deleteButton: { width: 60, height: 60, backgroundColor: 'rgba(239, 68, 68, 0.1)', borderRadius: 20, alignItems: 'center', justifyContent: 'center' }
 });

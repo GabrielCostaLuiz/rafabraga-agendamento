@@ -190,8 +190,8 @@ export default function AgendaScreen() {
                 }}
               >
                 <View style={styles.dateBadge}>
-                  <Text style={styles.dateText}>{item.date.split(' ')[0]}</Text>
-                  <Text style={styles.monthText}>{item.date.split(' ')[1]}</Text>
+                  <Text style={styles.dateText}>{item.date}</Text>
+                  <Text style={styles.monthText}>{item.month || 'MAR'}</Text>
                 </View>
                 <View style={styles.itemContent}>
                   <Text style={styles.eventName}>{item.event}</Text>

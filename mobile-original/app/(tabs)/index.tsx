@@ -107,7 +107,7 @@ export default function HomeScreen() {
                   <TouchableOpacity key={show.id} style={styles.appointmentCard} activeOpacity={0.7} onPress={() => router.push('/agenda')}>
                      <View style={styles.appointmentTime}>
                         <Clock size={14} color="#EF4444" />
-                        <Text style={styles.timeText}>{show.date} - {show.time}</Text>
+                        <Text style={styles.timeText}>{show.date} {show.month} - {show.time}</Text>
                      </View>
                      <Text style={styles.appointmentLocal}>{show.event}</Text>
                      <View style={styles.appointmentCity}>

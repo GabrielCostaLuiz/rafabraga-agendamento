@@ -52,3 +52,24 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+    if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
+
+    const client = await clientPromise;
+    const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
+    const collection = db.collection("budgets");
+    
+    const { ObjectId } = require("mongodb");
+    
+    await collection.deleteOne({ _id: new ObjectId(id) });
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Erro na API da Budgets (DELETE):", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  }
+}

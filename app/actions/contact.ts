@@ -37,7 +37,7 @@ export async function submitContactForm(data: z.infer<typeof formSchema>) {
     // O Zod parse default retira campos fantasmas passados por atacantes. (Safe-Payload)
     const securePayload = {
       ...parsed.data,
-      status: "pending",               // Status inicial do pipeline de vendas do App Mobile
+      status: "Novo",               // Status inicial do pipeline de vendas do App Mobile
       createdAt: new Date(),
       updatedAt: new Date()
     };
