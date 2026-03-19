@@ -42,7 +42,6 @@ export default async function Home() {
 
         {/* Componente Header Unificado */}
         <Header
-          logo="R—B"
           leftLinks={[
             { label: "agenda", href: "#agenda" },
             { label: "O que faço", href: "#o-que-faco" },

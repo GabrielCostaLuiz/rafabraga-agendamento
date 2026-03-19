@@ -36,7 +36,7 @@ export default function FloatingAudioPlayer() {
                 <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
               </svg>
             ) : (
-              <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             )}

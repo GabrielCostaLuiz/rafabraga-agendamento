@@ -112,20 +112,20 @@ export const Card: React.FC<CardProps> = ({
         style={{
           backgroundColor: color,
           scale,
-          top: `calc(-5vh + ${i * 20}px)`,
+          top: `calc(-2vh + ${i * 25}px)`,
         }}
-        className="flex flex-col relative h-[400px] md:h-[60vh] w-[90%] md:w-[70%] rounded-[30px] lg:p-12 sm:p-6 p-4 origin-top shadow-2xl border border-white/5"
+        className="flex flex-col relative h-[480px] md:h-[60vh] w-[92%] md:w-[70%] rounded-[30px] lg:p-12 sm:p-8 p-6 origin-top shadow-2xl border border-white/5"
       >
-        <div className="flex flex-col md:flex-row h-full gap-8 md:gap-10">
+        <div className="flex flex-col md:flex-row h-full gap-4 md:gap-10">
           <div className="flex-1 md:w-[45%] flex flex-col justify-center">
-            <h2 className="text-3xl md:text-[2.5rem] font-bold uppercase tracking-tighter mb-4 font-outfit">{title}</h2>
+            <h2 className="text-2xl md:text-[2.5rem] font-bold uppercase tracking-tighter mb-2 md:mb-4 font-outfit">{title}</h2>
             <p className="text-white/70 text-sm md:text-lg leading-relaxed font-sans">
               {description}
             </p>
      
           </div>
 
-          <div className="relative w-full md:w-[55%] h-[200px] md:h-full rounded-2xl overflow-hidden shadow-2xl">
+          <div className="relative w-full md:w-[55%] h-[180px] md:h-full rounded-2xl overflow-hidden shadow-2xl">
             <motion.div
               className="w-full h-full"
               style={{ scale: imageScale }}

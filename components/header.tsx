@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import Image from 'next/image';
 
 interface NavLink {
   label: string;
@@ -8,14 +8,12 @@ interface NavLink {
 }
 
 interface HeaderProps {
-  logo?: string;
   leftLinks?: NavLink[];
   rightLinks?: NavLink[];
   className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({
-  logo = "R—B",
   leftLinks = [
     { label: "sobre rb", href: "#" },
     { label: "spotify", href: "#" }
@@ -42,8 +40,14 @@ const Header: React.FC<HeaderProps> = ({
         <div className="flex-1 md:hidden" />
 
         {/* Logo - Sempre centralizado */}
-        <div className="flex-1 md:flex-none flex justify-center text-white text-lg font-bold tracking-normal">
-          {logo}
+        <div className="flex-1 md:flex-none flex justify-center">
+          <Image 
+            src="/logo.png" 
+            alt="Rafa Braga Logo" 
+            width={120} 
+            height={40} 
+            className="h-8 md:h-12 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition-opacity"
+          />
         </div>
 
         {/* Lado Direito */}
