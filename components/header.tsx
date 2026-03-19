@@ -38,6 +38,9 @@ const Header: React.FC<HeaderProps> = ({
           ))}
         </div>
 
+        {/* Espaçador para manter o logo centralizado no mobile */}
+        <div className="flex-1 md:hidden" />
+
         {/* Logo - Sempre centralizado */}
         <div className="flex-1 md:flex-none flex justify-center text-white text-lg font-bold tracking-normal">
           {logo}
@@ -52,10 +55,8 @@ const Header: React.FC<HeaderProps> = ({
           ))}
         </div>
 
-        {/* Simples indicador de menu para mobile (opcional por enquanto) */}
-        <div className="md:hidden flex-1 flex justify-end">
-           <span className="text-[8px] border border-white/20 px-2 py-1 rounded">Menu</span>
-        </div>
+        {/* Espaçador para manter o logo centralizado no mobile */}
+        <div className="flex-1 md:hidden" />
       </nav>
     </header>
   );

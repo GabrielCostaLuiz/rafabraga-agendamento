@@ -10,7 +10,7 @@ const Hero = () => {
   const isPlayingLocalTrack = isPlaying && activeSource === "local";
 
   return (
-    <section className="relative min-h-screen w-full bg-black text-white overflow-hidden pt-24 md:pt-30 pb-30">
+    <section className="relative min-h-screen w-full bg-black text-white overflow-hidden pt-10 md:pt-30 pb-30 px-4">
       {/* Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video
@@ -70,7 +70,7 @@ const Hero = () => {
             <div className="absolute w-2.5 h-2.5 bg-black rounded-full border border-white/40 z-20 shadow-inner"></div>
             <div className="absolute w-1 h-1 bg-white/20 rounded-full z-30"></div>
             
-            <div className="absolute inset-0 flex items-center justify-center z-40 opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 rounded-full">
+            <div className={`absolute inset-0 flex items-center justify-center z-40 transition-opacity bg-black/20 rounded-full ${isPlayingLocalTrack ? 'opacity-0 group-hover:opacity-100' : 'opacity-100'}`}>
               {isPlayingLocalTrack ? (
                 <div className="w-3 h-3 flex gap-0.5">
                   <div className="w-1 h-full bg-white"></div>
@@ -83,7 +83,7 @@ const Hero = () => {
           </div>
           
           <span className="font-medium tracking-tight text-white/80 group-hover:text-white transition-colors">
-            {!isPlayingLocalTrack && "Pausado —"} Tatuado Está (Dueto) - Radio Edit
+            Tatuado Está (Dueto)
           </span>
         </button>
 

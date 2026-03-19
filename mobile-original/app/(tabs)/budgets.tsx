@@ -183,9 +183,9 @@ export default function BudgetsScreen() {
                       <Text style={styles.sectionTitle}>Limitações Acústicas</Text>
                    </View>
                    <Text style={styles.bodyText}>
-                     {selectedLead.acoustics === 'livre' ? 'Livre - Som aberto e forte' : 
-                      selectedLead.acoustics === 'controlado' ? 'Controlado - Ambiente familiar' :
-                      selectedLead.acoustics === 'baixo' ? 'Restrito (Sem percussão pesada)' :
+                     {selectedLead.acoustics === 'livre' ? 'Livre - Sem restrições' : 
+                      selectedLead.acoustics === 'controlado' ? 'Controlado - Ambiente Familiar' :
+                      selectedLead.acoustics === 'restrito' ? 'Restrito - Som Baixo / Coquetel' :
                       (selectedLead.acoustics || 'Não informado')}
                    </Text>
                 </View>
