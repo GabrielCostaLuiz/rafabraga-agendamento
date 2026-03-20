@@ -32,7 +32,18 @@ export default async function Home() {
     {
       node: "/logo-loop/palmeiras_logo.png",
       title: "Palmeiras"
-    }
+    },
+    {
+      node: "/logo-loop/johnsons_logo.png",
+      title: "Johnsons"
+    },
+{
+      node: "/logo-loop/long_logo.png",
+      title: "Long Island"
+    },{
+      node: "/logo-loop/bar_logo.png",
+      title: "Bar Mooca"
+    },
   ];
 
   return (

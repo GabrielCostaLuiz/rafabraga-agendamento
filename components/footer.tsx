@@ -1,43 +1,10 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { FaInstagram, FaTiktok, FaSpotify, FaYoutube, FaWhatsapp } from 'react-icons/fa6';
+import { RAFA_BRAGA_DATA } from '@/lib/constants';
 
-const SOCIAL_LINKS = [
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/rafabragacantor',
-    icon: <FaInstagram size={18} />,
-  },
-  {
-    label: 'TikTok',
-    href: 'https://www.tiktok.com/@rafabragacantor',
-    icon: <FaTiktok size={18} />,
-  },
-  {
-    label: 'Spotify',
-    href: 'https://open.spotify.com/artist/5XxPfh8njv8xZ2QIUd9H7t',
-    icon: <FaSpotify size={18} />,
-  },
-  {
-    label: 'YouTube',
-    href: 'https://www.youtube.com/@RafaBragaCantor',
-    icon: <FaYoutube size={18} />,
-  },
-  {
-    label: 'WhatsApp',
-    href: 'https://wa.me/5511996142927?text=Olá%20Rafa!%20Gostaria%20de%20saber%20mais%20sobre%20sua%20agenda%20e%20valores%20para%20shows.',
-    icon: <FaWhatsapp size={18} />,
-  },
-];
-
-const NAV_LINKS = [
-  { label: 'Início', href: '#' },
-  { label: 'Agenda', href: '#agenda' },
-  { label: 'O que faço', href: '#o-que-faco' },
-  { label: 'Spotify', href: '#spotify' },
-  { label: 'Contato', href: '#contato' },
-];
+const SOCIAL_LINKS = RAFA_BRAGA_DATA.socials;
+const NAV_LINKS = RAFA_BRAGA_DATA.navLinks;
 
 export default function Footer() {
   return (
@@ -69,7 +36,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[13vw] leading-none uppercase font-black text-center bg-gradient-to-b from-white to-white/10 bg-clip-text text-transparent select-none font-outfit"
+          className="text-[13vw] leading-none uppercase font-black text-center bg-linear-to-b from-white to-white/10 bg-clip-text text-transparent select-none font-outfit"
         >
           RAFA BRAGA
         </motion.h2>
@@ -144,7 +111,7 @@ export default function Footer() {
             </div>
 
             <a
-              href="https://wa.me/5511996142927?text=Olá%20Rafa!%20Gostaria%20de%20saber%20mais%20sobre%20sua%20agenda%20e%20valores%20para%20shows."
+              href={RAFA_BRAGA_DATA.socials.find(s => s.label === 'WhatsApp')?.href || "#"}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 inline-flex items-center gap-2 px-5 py-3 bg-red-600 hover:bg-red-500 active:scale-95 transition-all text-white rounded-full text-xs font-bold uppercase tracking-widest w-fit"

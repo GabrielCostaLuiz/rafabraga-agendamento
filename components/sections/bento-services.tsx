@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import Image from 'next/image';
+import { RAFA_BRAGA_DATA } from '@/lib/constants';
 
 interface BentoItem {
   title: string;
@@ -18,23 +19,20 @@ const services: BentoItem[] = [
       'O melhor do samba e pagode com a energia e carisma únicos do Rafa Braga. Shows completos com banda, repertório personalizado e muita interação com o público.',
     image: '/services/samba-show.png',
     gridClass: 'md:col-span-2 md:row-span-2',
-    cta: 'Agendar Show',
   },
   {
-    title: 'Casamentos',
+    title: 'Festas & Eventos',
     description:
-      'Do acústico na cerimônia à festa completa. Transformamos seu sonho em melodia.',
+      'Trilha sonora personalizada para aniversários e celebrações. Transformamos seu momento em uma experiência memorável.',
     image: '/services/casamento.png',
     gridClass: 'md:col-span-1 md:row-span-1',
-    cta: 'Saiba Mais',
   },
   {
-    title: 'Estrutura Premium',
+    title: 'Banda de Elite',
     description:
-      'Som e iluminação de alta tecnologia. Cuidamos de toda a parte técnica.',
+      'Músicos profissionais altamente qualificados e comprometidos. Performance técnica e energia máxima no palco.',
     image: '/services/estrutura.png',
     gridClass: 'md:col-span-1 md:row-span-1',
-    cta: 'Ver Equipagem',
   },
   {
     title: 'Eventos Corporativos',
@@ -42,16 +40,10 @@ const services: BentoItem[] = [
       'Profissionalismo e descontração para confraternizações, convenções e festas empresariais.',
     image: '/services/corporativo.png',
     gridClass: 'md:col-span-1 md:row-span-1',
-    cta: 'Contratar',
   },
 ];
 
-const stats = [
-  { value: '+500', label: 'Shows Realizados' },
-  { value: '+20', label: 'Anos de Palco' },
-  { value: '+200', label: 'Casamentos' },
-  { value: '+50', label: 'Empresas Atendidas' },
-];
+const stats = RAFA_BRAGA_DATA.stats.slice(4, 8);
 
 function BentoCard({ item, index }: { item: BentoItem; index: number }) {
   return (
@@ -92,17 +84,7 @@ function BentoCard({ item, index }: { item: BentoItem; index: number }) {
                 {item.description}
               </p>
               
-              {item.cta && (
-                <span className="self-start text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-red-400 flex items-center gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 md:delay-150">
-                  {item.cta}
-                  <svg width="16" height="8" viewBox="0 0 16 8" fill="none">
-                    <path
-                      d="M15.354 4.354a.5.5 0 000-.708L12.172.464a.5.5 0 10-.708.708L14.293 4l-2.829 2.828a.5.5 0 10.708.708l3.182-3.182zM0 4.5h15v-1H0v1z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-              )}
+              {/* CTA Removido */}
             </div>
           </div>
         </div>
@@ -149,7 +131,7 @@ export default function BentoServices() {
       <SectionHeader
         titlePart1="O QUE"
         titlePart2="EU FAÇO"
-        subtitle="Da cerimônia ao pagode de mesa: Música para momentos únicos."
+        subtitle={RAFA_BRAGA_DATA.bentoSubtitle}
         className="mb-16 relative z-10"
       />
 
