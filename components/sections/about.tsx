@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import Image from 'next/image';
 import { useRef } from 'react';
 import SectionHeader from '@/components/section-header';
-import { FaWhatsapp } from 'react-icons/fa6';
 import { RAFA_BRAGA_DATA } from '@/lib/constants';
 
 export default function About() {

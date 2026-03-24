@@ -126,9 +126,7 @@ export default function Footer() {
 
         {/* ── BOTTOM BAR ── */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 pb-10">
-          <p className="text-white/25 text-xs font-sans tracking-widest uppercase">
-            © {new Date().getFullYear()} Rafa Braga. Todos os direitos reservados.
-          </p>
+          
 
           <a
             href="https://gabrielcostaluiz.com.br"
@@ -141,6 +139,10 @@ export default function Footer() {
               Gabriel Costa Luiz
             </span>
           </a>
+
+          <p className="text-white/25 text-xs font-sans tracking-widest uppercase">
+            © {new Date().getFullYear()} Rafa Braga. Todos os direitos reservados.
+          </p>
         </div>
       </motion.div>
     </footer>
