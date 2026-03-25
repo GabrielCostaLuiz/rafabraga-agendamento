@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, ActivityIndicator, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Calendar, FileText, ChevronRight, TrendingUp, Users, Clock, MapPin } from 'lucide-react-native';
-import { useRouter } from 'expo-router';
+import { Calendar, TrendingUp, Users, Clock, MapPin } from 'lucide-react-native';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { agendaService, Show } from '../../services/agendaService';
 import { budgetsService } from '../../services/budgetsService';
 
@@ -34,9 +34,11 @@ export default function HomeScreen() {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -119,23 +121,6 @@ export default function HomeScreen() {
              )}
           </View>
         </View>
-
-        {/* Quick Links / Shortcuts */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Ação Rápida</Text>
-          <View style={styles.shortcutsGrid}>
-            <TouchableOpacity 
-              style={[styles.shortcutBtn, { backgroundColor: '#EF4444' }]} 
-              onPress={() => router.push('/agenda?action=new_show')}
-            >
-               <View style={[styles.shortcutIcon, { backgroundColor: 'rgba(255,255,255,0.2)' }]}>
-                 <Calendar size={22} color="#FFF" />
-               </View>
-               <Text style={[styles.shortcutLabel, { color: '#FFF' }]}>Nova Data na Agenda</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -275,29 +260,6 @@ const styles = StyleSheet.create({
   cityText: {
     color: 'rgba(255, 255, 255, 0.3)',
     fontSize: 12,
-  },
-  shortcutsGrid: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 16,
-  },
-  shortcutBtn: {
-    flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-    padding: 16,
-    borderRadius: 20,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.1)',
-  },
-  shortcutIcon: {
-    width: 44,
-    height: 44,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    borderRadius: 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
   },
   shortcutLabel: {
     color: '#FFF',

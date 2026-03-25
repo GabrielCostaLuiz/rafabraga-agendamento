@@ -1,0 +1,231 @@
+[     758ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[    1114ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[    1429ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ webpack://embed-standalone-prod/./src/iframe-api/src/v1/index.ts?:231
+[  182096ms] [ERROR] ./components/sections/spotify-section.tsx:161:15
+Expected '</', got 'ident'
+  159 |             div
+  160 |             <motion.div
+> 161 |               key={artist.id}
+      |               ^^^
+  162 |               initial={{ opacity: 0, y: 30, scale: 0.98 }}
+  163 |               whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  164 |               viewport={{ once: true, margin: '-50px' }}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  182201ms] [ERROR] ./components/sections/spotify-section.tsx:161:15
+Expected '</', got 'ident'
+  159 |             div
+  160 |             <motion.div
+> 161 |               key={artist.id}
+      |               ^^^
+  162 |               initial={{ opacity: 0, y: 30, scale: 0.98 }}
+  163 |               whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  164 |               viewport={{ once: true, margin: '-50px' }}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  184958ms] [ERROR] ./components/sections/spotify-section.tsx:182:15
+Expected '</', got 'ident'
+  180 |             </div>
+  181 |             <motion.div
+> 182 |               key={artist.id}
+      |               ^^^
+  183 |               initial={{ opacity: 0, y: 30, scale: 0.98 }}
+  184 |               whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  185 |               viewport={{ once: true, margin: '-50px' }}
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  189847ms] [ERROR] Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `SpotifySection`.  @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  189994ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  212524ms] [ERROR] ./components/sections/spotify-section.tsx:193:13
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  191 |               Seguir {artist.label.split(' ')[0]}
+  192 |             </a>
+> 193 |           ))}
+      |             ^
+  194 |         </motion.div>
+  195 |             </div>
+  196 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  215992ms] [ERROR] ./components/sections/spotify-section.tsx:193:13
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  191 |               Seguir {artist.label.split(' ')[0]}
+  192 |             </a>
+> 193 |           ))}
+      |             ^
+  194 |         </motion.div>
+  195 |             </div>
+  196 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  217371ms] [ERROR] ./components/sections/spotify-section.tsx:193:13
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  191 |               Seguir {artist.label.split(' ')[0]}
+  192 |             </a>
+> 193 |           ))}
+      |             ^
+  194 |         </motion.div>
+  195 |             </div>
+  196 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  219165ms] [ERROR] ./components/sections/spotify-section.tsx:193:13
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  191 |               Seguir {artist.label.split(' ')[0]}
+  192 |             </a>
+> 193 |           ))}
+      |             ^
+  194 |         </motion.div>
+  195 |             </div>
+  196 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  221044ms] [ERROR] ./components/sections/spotify-section.tsx:193:13
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+  191 |               Seguir {ARTISTS[0].label.split(' ')[0]}
+  192 |             </a>
+> 193 |           ))}
+      |             ^
+  194 |         </motion.div>
+  195 |             </div>
+  196 |
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  222893ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  237302ms] [ERROR] ./components/sections/spotify-section.tsx:185:28
+Expected '</', got ']'
+  183 |   
+  184 |             <a
+> 185 |               key={ARTISTS[].id}
+      |                            ^
+  186 |               href={`https://open.spotify.com/artist/${ARTISTS[0].id}`}
+  187 |               target="_blank"
+  188 |               rel="noopener noreferrer"
+
+Parsing ecmascript source code failed
+
+Import trace:
+  Server Component:
+    ./components/sections/spotify-section.tsx
+    ./app/page.tsx @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  239082ms] ReferenceError: i is not defined
+    at eval (http://localhost:3000/_next/static/chunks/_0vuyuf8._.js?id=%255Bproject%255D%252Fcomponents%252Fsections%252Fspotify-section.tsx+%255Bapp-client%255D+%2528ecmascript%2529:311:52)
+    at Array.map (<anonymous>)
+    at SpotifySection (http://localhost:3000/_next/static/chunks/_0vuyuf8._.js?id=%255Bproject%255D%252Fcomponents%252Fsections%252Fspotify-section.tsx+%255Bapp-client%255D+%2528ecmascript%2529:237:43)
+    at Object.react_stack_bottom_frame (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:15037:24)
+    at renderWithHooks (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:4620:24)
+    at updateFunctionComponent (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:6081:21)
+    at beginWork (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:6691:24)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:965:74)
+    at performUnitOfWork (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:9555:97)
+    at workLoopSync (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:9449:40)
+    at renderRootSync (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:9433:13)
+    at performWorkOnRoot (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:9061:186)
+    at performSyncWorkOnRoot (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:10263:9)
+    at flushSyncWorkAcrossRoots_impl (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:10179:316)
+    at processRootScheduleInMicrotask (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:10200:106)
+    at http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:10274:158
+[  240540ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  240982ms] [ERROR] Erro ao carregar agenda: TypeError: Failed to fetch
+    at fetchShows (http://localhost:3000/_next/static/chunks/_0vuyuf8._.js:1267:44)
+    at Agenda.useEffect (http://localhost:3000/_next/static/chunks/_0vuyuf8._.js:1280:13)
+    at Object.react_stack_bottom_frame (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:15087:22)
+    at runWithFiberInDEV (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:965:74)
+    at commitHookEffectListMount (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:7255:167)
+    at commitHookPassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:7290:60)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8689:33)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8693:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8750:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316)
+    at commitPassiveMountOnFiber (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8688:17)
+    at recursivelyTraversePassiveMountEffects (http://localhost:3000/_next/static/chunks/0g.c_next_dist_compiled_react-dom_0~qggau._.js:8676:316) @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  241355ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  241511ms] [ERROR] Each child in a list should have a unique "key" prop.%s%s See https://react.dev/link/warning-keys for more information. 
+
+Check the render method of `SpotifySection`.  @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:3272
+[  241646ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  241818ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ webpack://embed-standalone-prod/./src/iframe-api/src/v1/index.ts?:231
+[  424159ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  609922ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  609996ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431
+[  651788ms] [WARNING] %c%s%c [33m[1m⚠[22m[39m metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   @ http://localhost:3000/_next/static/chunks/0g.c_next_dist_03s89ly._.js:2431

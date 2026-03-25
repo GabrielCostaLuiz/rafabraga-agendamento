@@ -32,7 +32,8 @@ export default function Agenda() {
         const response = await fetch('/api/agenda', { cache: 'no-store' });
         if (response.ok) {
           const data = await response.json();
-          setShows(data);
+          // Only show events marked as visible on the site
+          setShows(data.filter((s: Show & { showOnSite?: boolean }) => s.showOnSite !== false));
         }
       } catch (error) {
         console.error("Erro ao carregar agenda:", error);

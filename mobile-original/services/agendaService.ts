@@ -6,6 +6,7 @@ export interface Show {
   event: string;
   city: string;
   time: string;
+  showOnSite?: boolean;
 }
 
 // URL do seu site Next.js (ajuste para localhost ou produção se necessário)

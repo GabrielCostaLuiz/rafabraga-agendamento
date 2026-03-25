@@ -10,7 +10,7 @@ export async function GET() {
     const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
     const collection = db.collection("agenda");
     
-    const shows = await collection.find({ active: { $ne: false } }).sort({ date: 1 }).toArray();
+    const shows = await collection.find({ active: { $ne: false } }).sort({ createdAt: -1 }).toArray();
     
     return NextResponse.json(shows.map(s => {
       // O Mobile salva data como "19 MAR" e cidade como "Rua X, 10 - São Paulo/SP"
@@ -28,7 +28,8 @@ export async function GET() {
         title: s.event || s.title || "", // Web espera title
         venue: cityParts[0] || "", // O primeiro pedaço antes do '-'
         city: cityParts[1] || cityParts[0] || "", // O segundo pedaço ou fallback
-        time: s.time || ""
+        time: s.time || "",
+        showOnSite: s.showOnSite !== false
       };
     }));
   } catch (error) {

@@ -12,6 +12,21 @@ const formSchema = z.object({
     .regex(/^\d+$/),
   cep: z.string().optional(),
   location: z.string().min(3),
+  houseNumber: z.string().optional(),
+  showDate: z.string().optional().refine((val) => {
+    if (!val) return true;
+    const date = new Date(val);
+    const year = date.getFullYear();
+    const isFourDigits = val.split('-')[0].length === 4;
+    
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const selectedDate = new Date(val);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    return year > 2000 && year < 10000 && isFourDigits && selectedDate >= today;
+  }),
+  musicians: z.string().optional(),
   style: z.array(z.string()).min(1),
   acoustics: z.string().min(1),
   infra: z.array(z.string()).optional(),

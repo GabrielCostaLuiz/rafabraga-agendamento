@@ -2,6 +2,9 @@ export interface Lead {
   id: string | number;
   name: string;
   location: string;
+  houseNumber?: string;
+  showDate?: string;
+  musicians?: string;
   date: string;
   status: 'Novo' | 'Visto' | string;
   phone: string;
@@ -29,9 +32,15 @@ export const budgetsService = {
   },
 
   async markAsRead(id: string) {
+    return this.updateStatus(id, 'Visto');
+  },
+
+  async updateStatus(id: string, status: string) {
     try {
       const resp = await fetch(`${API_URL}?id=${id}`, {
         method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
       });
       return await resp.json();
     } catch (error) {
@@ -48,6 +57,20 @@ export const budgetsService = {
       return await resp.json();
     } catch (error) {
       console.error("Error deleting lead:", error);
+      return { success: false, error };
+    }
+  },
+
+  async createLead(lead: Partial<Lead>) {
+    try {
+      const resp = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead),
+      });
+      return await resp.json();
+    } catch (error) {
+      console.error("Error creating lead:", error);
       return { success: false, error };
     }
   }
