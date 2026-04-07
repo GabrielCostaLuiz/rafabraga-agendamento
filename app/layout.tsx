@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: ["Rafa Braga", "Samba", "Pagode", "Evento Corporativo", "Casamento", "Música ao vivo", "São Paulo"],
   authors: [{ name: "Rafa Braga" }],
   openGraph: {
-    title: "Rafa Braga | Samba & Pagode de Alto Nível",
+    title: "Rafa Braga | Samba & Pagode",
     description: "A voz que marca os seus momentos. Shows, casamentos e eventos com o melhor do samba e pagode.",
     url: "https://rafabraga.com.br", // Ajustar para o domínio real se souber
     siteName: "Rafa Braga Oficial",
