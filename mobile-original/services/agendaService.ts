@@ -9,14 +9,21 @@ export interface Show {
   showOnSite?: boolean;
 }
 
-// URL do seu site Next.js (ajuste para localhost ou produção se necessário)
-const BASE_URL = "https://rafabraga.vercel.app"; 
+const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || "") as string; 
 const API_URL = `${BASE_URL}/api/agenda`;
+const API_KEY = (process.env.EXPO_PUBLIC_API_SECRET_KEY || "") as string;
+
+const HEADERS = {
+  "Content-Type": "application/json",
+  "x-api-key": API_KEY, 
+};
 
 export const agendaService = {
   async getShows(): Promise<Show[]> {
     try {
-      const resp = await fetch(`${API_URL}?t=${Date.now()}`);
+      const resp = await fetch(`${API_URL}?t=${Date.now()}`, {
+        headers: { "x-api-key": API_KEY }
+      });
       if (!resp.ok) throw new Error("Failed to fetch shows");
       return await resp.json();
     } catch (error) {
@@ -29,7 +36,7 @@ export const agendaService = {
     try {
       const resp = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: HEADERS,
         body: JSON.stringify(show),
       });
       return await resp.json();
@@ -43,7 +50,7 @@ export const agendaService = {
     try {
       const resp = await fetch(`${API_URL}?id=${id}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: HEADERS,
         body: JSON.stringify(show),
       });
       return await resp.json();
@@ -57,6 +64,7 @@ export const agendaService = {
     try {
       const resp = await fetch(`${API_URL}?id=${id}`, {
         method: "DELETE",
+        headers: { "x-api-key": API_KEY }
       });
       return await resp.json();
     } catch (error) {

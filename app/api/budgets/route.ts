@@ -1,13 +1,29 @@
-import clientPromise from "@/lib/mongodb";
+import { getCollection } from "@/lib/mongodb";
 import { NextResponse } from "next/server";
+import { isValidApiKey, unauthorizedResponse } from "@/lib/auth-util";
+import { z } from "zod";
+import { ObjectId } from "mongodb";
 
-export async function GET() {
+const budgetSchema = z.object({
+  name: z.string().min(3),
+  phone: z.string().min(10),
+  location: z.string(),
+  cep: z.string().optional(),
+  houseNumber: z.string().optional(),
+  showDate: z.string().optional(),
+  musicians: z.string().optional(),
+  style: z.array(z.string()).optional(),
+  acoustics: z.string().optional(),
+  infra: z.array(z.string()).optional(),
+  notes: z.string().optional(),
+  status: z.enum(["Novo", "Visto", "Respondido", "Arquivado"]).optional(),
+});
+
+export async function GET(request: Request) {
+  if (!isValidApiKey(request)) return unauthorizedResponse();
+
   try {
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
-    const collection = db.collection("budgets");
-    
-    // Pegando leads recentes
+    const collection = await getCollection("budgets");
     const leads = await collection.find({}).sort({ createdAt: -1 }).toArray();
     
     return NextResponse.json(leads.map(l => ({
@@ -28,29 +44,31 @@ export async function GET() {
       notes: l.notes || ""
     })));
   } catch (error) {
-    console.error("Erro na API da Budgets:", error);
+    console.error("Erro na API da Budgets (GET):", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }
 
 export async function PATCH(request: Request) {
+  if (!isValidApiKey(request)) return unauthorizedResponse();
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    if (!ObjectId.isValid(id)) return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
 
     const body = await request.json().catch(() => ({}));
-    const newStatus = body.status || "Visto";
+    const parsed = budgetSchema.partial().safeParse(body);
+    
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Dados inválidos", details: parsed.error.format() }, { status: 400 });
+    }
 
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
-    const collection = db.collection("budgets");
-    
-    const { ObjectId } = require("mongodb");
-    
+    const collection = await getCollection("budgets");
     await collection.updateOne(
       { _id: new ObjectId(id) },
-      { $set: { status: newStatus, updatedAt: new Date() } }
+      { $set: { ...parsed.data, updatedAt: new Date() } }
     );
     
     return NextResponse.json({ success: true });
@@ -61,17 +79,22 @@ export async function PATCH(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (!isValidApiKey(request)) return unauthorizedResponse();
+
   try {
     const body = await request.json();
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
-    const collection = db.collection("budgets");
+    const parsed = budgetSchema.safeParse(body);
     
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Payload inválido", details: parsed.error.format() }, { status: 400 });
+    }
+
+    const collection = await getCollection("budgets");
     const newLead = {
-      ...body,
-      status: body.status || "Novo",
+      ...parsed.data,
+      status: parsed.data.status || "Novo",
       createdAt: new Date(),
-      date: body.date || new Date().toLocaleDateString("pt-BR")
+      date: new Date().toLocaleDateString("pt-BR")
     };
     
     const result = await collection.insertOne(newLead);
@@ -84,17 +107,15 @@ export async function POST(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  if (!isValidApiKey(request)) return unauthorizedResponse();
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     if (!id) return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    if (!ObjectId.isValid(id)) return NextResponse.json({ error: "Invalid ID format" }, { status: 400 });
 
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB || "rafabraga_db");
-    const collection = db.collection("budgets");
-    
-    const { ObjectId } = require("mongodb");
-    
+    const collection = await getCollection("budgets");
     await collection.deleteOne({ _id: new ObjectId(id) });
     
     return NextResponse.json({ success: true });

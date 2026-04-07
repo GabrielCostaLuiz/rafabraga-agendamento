@@ -26,36 +26,10 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const audioRef = useRef<HTMLAudioElement>(null);
   const spotifyControllerRef = useRef<any>(null);
   
-  const hasTriedAutoplay = useRef(false);
-
   // Computed state
   const isPlaying = isPlayingLocal || isPlayingSpotify;
 
-  // Local Audio Setup
-  useEffect(() => {
-    if (hasTriedAutoplay.current) return;
-    hasTriedAutoplay.current = true;
 
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === "false") return;
-    if (!audioRef.current) return;
-
-    audioRef.current.play().then(() => {
-      setIsPlayingLocal(true);
-      setActiveSource("local");
-    }).catch(() => {
-      setIsPlayingLocal(false);
-      const resumeOnInteraction = () => {
-        if (!audioRef.current) return;
-        audioRef.current.play().then(() => {
-          setIsPlayingLocal(true);
-          setActiveSource("local");
-        }).catch(() => {});
-        ["click", "touchstart", "keydown"].forEach(e => document.removeEventListener(e, resumeOnInteraction));
-      };
-      ["click", "touchstart", "keydown"].forEach(e => document.addEventListener(e, resumeOnInteraction, { once: true }));
-    });
-  }, []);
 
   const setSpotifyController = useCallback((controller: any) => {
     spotifyControllerRef.current = controller;

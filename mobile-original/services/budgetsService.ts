@@ -17,13 +17,21 @@ export interface Lead {
   createdAt?: string | Date;
 }
 
-const BASE_URL = "https://rafabraga.vercel.app"; 
+const BASE_URL = (process.env.EXPO_PUBLIC_API_URL || "") as string; 
 const API_URL = `${BASE_URL}/api/budgets`;
+const API_KEY = (process.env.EXPO_PUBLIC_API_SECRET_KEY || "") as string;
+
+const HEADERS = {
+  "Content-Type": "application/json",
+  "x-api-key": API_KEY, 
+};
 
 export const budgetsService = {
   async getLeads(): Promise<Lead[]> {
     try {
-      const resp = await fetch(`${API_URL}?t=${Date.now()}`);
+      const resp = await fetch(`${API_URL}?t=${Date.now()}`, {
+        headers: { "x-api-key": API_KEY }
+      });
       if (!resp.ok) throw new Error("Failed to fetch leads");
       return await resp.json();
     } catch (error) {
@@ -40,7 +48,7 @@ export const budgetsService = {
     try {
       const resp = await fetch(`${API_URL}?id=${id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: HEADERS,
         body: JSON.stringify({ status }),
       });
       return await resp.json();
@@ -54,6 +62,7 @@ export const budgetsService = {
     try {
       const resp = await fetch(`${API_URL}?id=${id}`, {
         method: "DELETE",
+        headers: { "x-api-key": API_KEY }
       });
       return await resp.json();
     } catch (error) {
@@ -66,7 +75,7 @@ export const budgetsService = {
     try {
       const resp = await fetch(API_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: HEADERS,
         body: JSON.stringify(lead),
       });
       return await resp.json();

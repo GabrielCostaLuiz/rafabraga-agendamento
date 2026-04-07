@@ -28,3 +28,13 @@ if (process.env.NODE_ENV === "development") {
 }
 
 export default clientPromise;
+
+/**
+ * Reusable helper to get a MongoDB collection with pre-configured DB name.
+ */
+export async function getCollection<T extends import("mongodb").Document>(collectionName: string) {
+  const client = await clientPromise;
+  const dbName = process.env.MONGODB_DB;
+  const db = client.db(dbName);
+  return db.collection<T>(collectionName);
+}

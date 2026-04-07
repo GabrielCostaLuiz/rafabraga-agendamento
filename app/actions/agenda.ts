@@ -1,27 +1,23 @@
 "use server";
 
-import clientPromise from "@/lib/mongodb";
+import { getCollection } from "@/lib/mongodb";
 
 export async function getShows() {
   try {
-    const client = await clientPromise;
-    const db = client.db(process.env.MONGODB_DB);
-    const collection = db.collection("agenda");
+    const collection = await getCollection("agenda");
 
-    // Buscando apenas shows ativos, assumindo ordem de inserção cronológica,
-    // ou seja, mais recentes (ou que vão acontecer) na ordem natural se inseridos sequencialmente.
-    // Pode ser adaptado se houver um campo timestamp / timestampMs no futuro.
+    // Buscando apenas shows ativos
     const showsData = await collection.find({ active: { $ne: false } }).toArray();
 
     return showsData.map((show) => ({
       _id: show._id?.toString(),
-      date: show.date || "",
-      weekday: show.weekday || "",
-      month: show.month || "",
-      title: show.title || "",
-      venue: show.venue || "",
-      city: show.city || "",
-      time: show.time || "",
+      date: (show.date as string) || "",
+      weekday: (show.weekday as string) || "",
+      month: (show.month as string) || "",
+      title: (show.title as string) || "",
+      venue: (show.venue as string) || "",
+      city: (show.city as string) || "",
+      time: (show.time as string) || "",
     }));
   } catch (error) {
     console.error("Erro ao buscar agenda:", error);

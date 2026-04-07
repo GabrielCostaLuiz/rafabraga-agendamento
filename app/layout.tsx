@@ -1,6 +1,5 @@
 import { Outfit, Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -72,7 +71,6 @@ export default function RootLayout({
       <meta name="apple-mobile-web-app-title" content="Rafa Braga" />
       <body className="min-h-full flex flex-col font-montserrat" suppressHydrationWarning>
         {children}
-        <Toaster theme="dark" position="bottom-right" />
       </body>
     </html>
   );

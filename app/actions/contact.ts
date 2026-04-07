@@ -1,6 +1,7 @@
 "use server";
 
-import clientPromise from "@/lib/mongodb";
+import { RAFA_BRAGA_DATA } from "@/lib/constants";
+import { getCollection } from "@/lib/mongodb";
 import { z } from "zod";
 
 // Zod Schema Sever Side (Single Source of Truth, no-trust architecture)
@@ -35,7 +36,7 @@ const formSchema = z.object({
 
 export async function submitContactForm(data: z.infer<typeof formSchema>) {
   try {
-    // 1. AppSec: Strict payload validation - Strip Extra fields to prevent Mass Assignment
+    // 1. AppSec: Strict payload validation
     const parsed = formSchema.safeParse(data);
     
     if (!parsed.success) {
@@ -43,22 +44,38 @@ export async function submitContactForm(data: z.infer<typeof formSchema>) {
       return { success: false, error: "Dados preenchidos inválidos." };
     }
 
-    // 2. Database Connection
-    const client = await clientPromise;
-    // Opcionalmente pegando da .env, pro safety, chamamos a collection principal:
-    const db = client.db(process.env.MONGODB_DB); 
+    // 2. AppSec: Rate Limiting Avançado (3 pedidos por hora)
+    const sixtyMinutesAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const collection = await getCollection("budgets");
+    
+    const recentRequests = await collection
+      .find({
+        phone: parsed.data.phone,
+        createdAt: { $gte: sixtyMinutesAgo }
+      })
+      .sort({ createdAt: 1 })
+      .toArray();
+
+    if (recentRequests.length >= 3) {
+      const oldestRequest = recentRequests[0];
+      const nextAllowedTime = new Date(oldestRequest.createdAt.getTime() + 60 * 60 * 1000);
+      const minutesRemaining = Math.ceil((nextAllowedTime.getTime() - Date.now()) / 60000);
+      
+      return { 
+        success: false, 
+        error: `Você já enviou 3 pedidos recentemente. Tente novamente em ${minutesRemaining} minutos ou entre em contato direto pelo WhatsApp para agilizar o atendimento: ${RAFA_BRAGA_DATA.whatsapp.number}.` 
+      };
+    }
 
     // 3. Sanitização e Criação de Tracking
-    // O Zod parse default retira campos fantasmas passados por atacantes. (Safe-Payload)
     const securePayload = {
       ...parsed.data,
-      status: "Novo",               // Status inicial do pipeline de vendas do App Mobile
+      status: "Novo",
       createdAt: new Date(),
       updatedAt: new Date()
     };
 
     // 4. Ingestão 
-    const collection = db.collection("budgets");
     await collection.insertOne(securePayload);
 
     return { success: true };
