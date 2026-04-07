@@ -20,8 +20,8 @@ const formSchema = z.object({
   cep: z.string().optional(),
   location: z.string().min(3, { message: 'Localização obrigatória.' }),
   houseNumber: z.string().optional(),
-  showDate: z.string().optional().refine((val) => {
-    if (!val) return true;
+  showDate: z.string().min(1, { message: 'Data obrigatória.' }).refine((val) => {
+    if (!val) return false;
     const date = new Date(val);
     // Impede datas irreais e anos com mais de 4 dígitos (ex: 27576)
     const year = date.getFullYear();

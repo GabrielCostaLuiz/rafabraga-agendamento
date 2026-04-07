@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Modal, A
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Phone, MessageCircle, Eye, X, Music, Layout, Calendar, AlertCircle, RotateCw, Trash2, Plus, Search, ChevronDown } from 'lucide-react-native';
 import { budgetsService, Lead } from '../../services/budgetsService';
+import { format, parseISO, isValid } from 'date-fns';
 
 type StatusFilter = 'Todos' | 'Novo' | 'Visto' | 'Fechado' | 'Cancelado';
 const STATUS_FILTERS: StatusFilter[] = ['Todos', 'Novo', 'Visto', 'Fechado', 'Cancelado'];
@@ -92,7 +93,7 @@ export default function BudgetsScreen() {
 
     const details = `
 📊 *Detalhes do Pedido:*
-📅 Data: ${lead.showDate || 'A definir'}
+📅 Data: ${formatDate(lead.showDate)}
 📍 Local: ${lead.location}${lead.houseNumber ? `, ${lead.houseNumber}` : ''}
 🎵 Estilo: ${Array.isArray(lead.style) ? lead.style.join(', ') : (lead.style || 'Não informado')}
 🎸 Músicos: ${lead.musicians || 'Não informado'}
@@ -163,6 +164,21 @@ export default function BudgetsScreen() {
   const getStatusLabel = (status: string) => {
     if (status === 'pending') return 'NOVO';
     return status.toUpperCase();
+  };
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return 'A definir';
+    try {
+      // Se já estiver no formato brasileiro, retorna
+      if (/^\d{2}\/\d{2}\/\d{4}$/.test(dateStr)) return dateStr;
+
+      const date = parseISO(dateStr);
+      if (!isValid(date)) return dateStr;
+
+      return format(date, "dd/MM/yyyy");
+    } catch (error) {
+      return dateStr;
+    }
   };
 
   return (
@@ -254,7 +270,7 @@ export default function BudgetsScreen() {
                     <Text style={styles.statusText}>{getStatusLabel(item.status)}</Text>
                   </View>
                 </View>
-                <Text style={styles.dateTextSmall}>{item.date || 'Recente'}</Text>
+                <Text style={styles.dateTextSmall}>{formatDate(item.date) || 'Recente'}</Text>
                 <View style={styles.actions}>
                   <TouchableOpacity style={styles.actionButton} onPress={() => openVisualizer(item)} disabled={processingId === item.id}>
                     {processingId === item.id ? <ActivityIndicator size="small" color="#FFF" /> : <Eye size={18} color="#FFF" />}
@@ -316,7 +332,7 @@ export default function BudgetsScreen() {
                   {selectedLead.showDate && (
                     <View style={styles.contactItem}>
                       <Calendar size={14} color="#EF4444" />
-                      <Text style={styles.contactText}>{selectedLead.showDate}</Text>
+                      <Text style={styles.contactText}>{formatDate(selectedLead.showDate)}</Text>
                     </View>
                   )}
                   {selectedLead.musicians && (
