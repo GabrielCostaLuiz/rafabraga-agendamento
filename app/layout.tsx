@@ -1,4 +1,4 @@
-import { Outfit, Montserrat } from "next/font/google";
+import { Outfit, Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -10,6 +10,12 @@ const outfit = Outfit({
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 import type { Metadata } from "next";
@@ -55,9 +61,14 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${outfit.variable} ${montserrat.variable} h-full antialiased scroll-smooth`}
+      className={`${outfit.variable} ${montserrat.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://open.spotify.com" />
+      </head>
       <meta name="apple-mobile-web-app-title" content="Rafa Braga" />
       <body className="min-h-full flex flex-col font-montserrat" suppressHydrationWarning>
         {children}

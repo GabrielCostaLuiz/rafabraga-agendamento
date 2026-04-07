@@ -1,4 +1,11 @@
-import { FaInstagram, FaTiktok, FaSpotify, FaYoutube, FaWhatsapp, FaFacebook } from 'react-icons/fa6';
+import { 
+  IconBrandInstagram, 
+  IconBrandTiktok, 
+  IconBrandSpotify, 
+  IconBrandYoutube, 
+  IconBrandFacebook, 
+  IconBrandWhatsapp 
+} from '@tabler/icons-react';
 import React from 'react';
 
 export const RAFA_BRAGA_DATA = {
@@ -15,37 +22,37 @@ export const RAFA_BRAGA_DATA = {
       label: 'Instagram', 
       name: 'Instagram',
       href: 'https://www.instagram.com/rafabragacantor', 
-      icon: React.createElement(FaInstagram, { size: 18 }) 
+      icon: React.createElement(IconBrandInstagram, { size: 18 }) 
     },
     { 
       label: 'TikTok', 
       name: 'TikTok',
       href: 'https://www.tiktok.com/@rafabragacantor', 
-      icon: React.createElement(FaTiktok, { size: 18 }) 
+      icon: React.createElement(IconBrandTiktok, { size: 18 }) 
     },
     { 
       label: 'Spotify', 
       name: 'Spotify',
       href: 'https://open.spotify.com/artist/5XxPfh8njv8xZ2QIUd9H7t', 
-      icon: React.createElement(FaSpotify, { size: 18 }) 
+      icon: React.createElement(IconBrandSpotify, { size: 18 }) 
     },
     { 
       label: 'YouTube', 
       name: 'YouTube',
       href: 'https://www.youtube.com/@RafaBragaCantor', 
-      icon: React.createElement(FaYoutube, { size: 18 }) 
+      icon: React.createElement(IconBrandYoutube, { size: 18 }) 
     },
     { 
       label: 'Facebook', 
       name: 'Facebook',
       href: 'https://www.facebook.com/rafasentimento/', 
-      icon: React.createElement(FaFacebook, { size: 18 }) 
+      icon: React.createElement(IconBrandFacebook, { size: 18 }) 
     },
     { 
       label: 'WhatsApp', 
       name: 'WhatsApp',
       href: 'https://wa.me/5511996142927?text=Olá%20Rafa!%20Gostaria%20de%20saber%20mais%20sobre%20sua%20agenda%20e%20valores%20para%20shows.', 
-      icon: React.createElement(FaWhatsapp, { size: 18 }) 
+      icon: React.createElement(IconBrandWhatsapp, { size: 18 }) 
     },
   ],
   navLinks: [

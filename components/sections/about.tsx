@@ -27,7 +27,6 @@ export default function About() {
       className="relative py-24 md:py-36 px-6 md:px-16 bg-brand-dark overflow-hidden"
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap');
 
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -85,9 +84,9 @@ export default function About() {
             <motion.div style={{ y: imageY, scale: imageScale }} className="absolute inset-0">
               <Image
                 src="/rafa-braga.jpeg"
-                alt="Rafa Braga"
+                alt="Rafa Braga - Cantor de Samba e Pagode"
                 fill
-                sizes="(max-width: 768px) 100vw, 380px"
+                sizes="(max-width: 768px) 90vw, 400px"
                 className="object-cover"
                 priority
               />

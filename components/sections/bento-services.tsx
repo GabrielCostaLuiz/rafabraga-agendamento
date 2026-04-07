@@ -57,10 +57,10 @@ function BentoCard({ item, index }: { item: BentoItem; index: number }) {
       {/* Imagem de fundo */}
       <Image
         src={item.image}
-        alt={item.title}
+        alt={`Serviço de ${item.title} - Rafa Braga`}
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
-        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] md:group-hover:scale-110"
+        sizes="(max-width: 768px) 95vw, (max-width: 1200px) 50vw, 600px"
+        className="object-cover transition-transform duration-700 md:group-hover:scale-110"
       />
 
       {/* Overlay gradiente - Mais escuro no bottom para legibilidade da fonte */}

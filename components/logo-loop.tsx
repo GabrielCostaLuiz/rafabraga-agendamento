@@ -314,8 +314,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           return (
             <li
               className={cx(
-                'flex-none text-[length:var(--logoloop-logoHeight)] leading-[1]',
-                isVertical ? 'mb-[var(--logoloop-gap)]' : 'mr-[var(--logoloop-gap)]',
+                'flex-none text-(length:--logoloop-logoHeight) leading-none',
+                isVertical ? 'mb-(--logoloop-gap)' : 'mr-(--logoloop-gap)',
                 scaleOnHover && 'overflow-visible group/item'
               )}
               key={key}
@@ -339,8 +339,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
             <Image
               src={(item as any).node}
               alt={(item as any).title ?? 'Partner Logo'}
-              height={logoHeight}
-              width={logoHeight * 3} // Placeholder width, will be constrained by object-contain
+              height={80}
+              width={80} 
               className="h-full w-auto object-contain"
               loading="lazy"
             />
@@ -366,9 +366,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           )} style={{ height: toCssLength(logoHeight), width: 'auto' }}>
             <Image
               src={(item as any).src}
-              sizes={(item as any).sizes || '200px'}
-              width={(item as any).width || logoHeight * 3}
-              height={(item as any).height || logoHeight}
+              sizes={(item as any).sizes || '80px'}
+              width={(item as any).width || 80}
+              height={(item as any).height || 80}
               alt={(item as any).alt ?? 'Logo'}
               className="h-full w-auto object-contain"
               loading="lazy"
