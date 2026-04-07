@@ -43,7 +43,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="budgets"
         options={{
-          title: 'Budgets',
+          title: 'Orçamentos',
           tabBarIcon: ({ color }) => <Briefcase size={24} color={color} />,
         }}
       />

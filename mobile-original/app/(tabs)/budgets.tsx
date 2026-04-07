@@ -556,7 +556,7 @@ const styles = StyleSheet.create({
   searchInput: { flex: 1, color: '#FFF', fontSize: 14 },
 
   // Filters
-  filterRow: { marginTop: 16, marginBottom: 16, height: 56 },
+  filterRow: { marginTop: 16, marginBottom: 16, height: 56, flexGrow: 0 },
   filterChip: { paddingHorizontal: 16, paddingVertical: 10, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.05)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)' },
   filterChipActive: { backgroundColor: '#EF4444', borderColor: '#EF4444' },
   filterChipText: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.5 },
