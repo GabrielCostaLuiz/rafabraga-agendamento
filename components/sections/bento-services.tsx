@@ -27,13 +27,13 @@ const services: BentoItem[] = [
     image: '/services/casamento.png',
     gridClass: 'md:col-span-1 md:row-span-1',
   },
-  {
-    title: 'Banda de Elite',
-    description:
-      'Músicos profissionais altamente qualificados e comprometidos. Performance técnica e energia máxima no palco.',
-    image: '/services/estrutura.png',
-    gridClass: 'md:col-span-1 md:row-span-1',
-  },
+{
+  title: 'Repertório Exclusivo',
+  description:
+    'Do samba raiz aos sucessos atuais. Uma seleção musical estratégica feita para manter a pista cheia do início ao fim.',
+  image: '/services/repertorio.png',
+  gridClass: 'md:col-span-1 md:row-span-1',
+},
   {
     title: 'Eventos Corporativos',
     description:
